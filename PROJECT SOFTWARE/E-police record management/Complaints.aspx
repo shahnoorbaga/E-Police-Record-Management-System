@@ -1,0 +1,159 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Complaints.aspx.cs" Inherits="Complaints" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>E-Police Record Management System</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FONTAWESOME STYLE CSS -->
+     <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <style type="text/css">
+        .style1
+        {
+            width: 172px;
+        }
+    </style>
+</head>
+<body > 
+   
+        <div class="navbar navbar-inverse navbar-fixed-top " >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" ><strong style="">Records</strong></a>
+            </div>
+            <div class="navbar-collapse collapse move-me">
+                <ul class="nav navbar-nav navbar-right set-links">
+                    <li><a href="index.html" class="active-menu-item"></a></li>
+                     <li><a href="about.html"></a></li>
+                     <li><a href="Complaints.aspx">COMPLAINTS</a></li>
+                    <li><a href="Citizens.aspx">CITIZENS</a></li>
+                     <li><a href="Search(Citizens).aspx">SEARCH</a></li>
+                      <li><a href="Change_Password(Police).aspx">CHANGE PASSWORD</a></li>
+                    <li><a href="Police_Login.aspx">LOGOUT</a></li>
+                    <li><a href="pgAdminLogin.aspx"></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!--MENU SECTION END-->
+    <section id="home-sec">
+        <div class="overlay text-center">
+            <h1 >E-Police Records</h1>
+            <hr class="hr-set"/>
+
+            <p>Secured | Anonymous</p>
+        </div>
+    </section>
+    <!--HOME SECTION END-->
+
+    <section id="features-sec"  >
+        <div class="container">
+           
+            <div class="row text-center" >
+<div class="col-md-3">
+    <form id="form1" runat="server">
+    <div>
+    <h1><center>Complaints</center></h1>
+    <table>
+    <tr>
+    <td class="style1">Complaint ID</br></br></td>
+    <td><asp:Textbox ID="Textbox1" runat="server"/></br></br></td>
+    </tr>
+    <tr>
+    <td class="style1">Complaint Description</br></br></td>
+    <td><asp:Textbox ID="Textbox2" runat="server"/><asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="Textbox2" ErrorMessage="Enter Description" ForeColor="Red"/></br></td>
+    </tr>
+     <tr>
+    <td class="style1">Complaint Date</br></br></td>
+    <td><asp:Textbox ID="Textbox3" runat="server"/><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Textbox2" ErrorMessage="Enter Description" ForeColor="Red"/></br></td>
+    </tr>
+    <tr>
+    <td class="style1">Complaint From</br></br> </td>
+    <td><asp:DropdownList ID="DropdownList1" runat="server" Width="145px">
+    
+    </asp:DropdownList></br></br></td>
+    </tr>
+     <tr>
+    <td class="style1">Complaint Against</br></br></td>
+    <td><asp:DropdownList ID="DropdownList2" runat="server" Width="146px">
+ 
+    </asp:DropdownList></br></br></td>
+    </tr>
+
+
+
+    </table>
+    <table width=100%>
+    <tr>
+   <td> <asp:Button ID="Button2" runat="server" Text="Update" onclick="Button2_Click"/></td>
+    <td><asp:Button ID="Button3" runat="server" Text="Delete" onclick="Button3_Click"/></td>
+   <td> <asp:Button ID="Button4" runat="server" Text="Clear" onclick="Button4_Click"/></td>
+    </tr>
+    </table>
+    <asp:Label ID="Label1" runat="server"/>
+        <br />
+        <br />
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+            DataSourceID="SqlDataSource1" 
+            onselectedindexchanged="GridView1_SelectedIndexChanged">
+            <Columns>
+                <asp:CommandField ShowSelectButton="True" />
+                <asp:BoundField DataField="C_ID" HeaderText="C_ID" SortExpression="C_ID" />
+                <asp:BoundField DataField="C_Des" HeaderText="C_Des" SortExpression="C_Des" />
+                <asp:BoundField DataField="C_Date" HeaderText="C_Date" 
+                    SortExpression="C_Date" />
+                <asp:BoundField DataField="C_From" HeaderText="C_From" 
+                    SortExpression="C_From" />
+                <asp:BoundField DataField="C_Against" HeaderText="C_Against" 
+                    SortExpression="C_Against" />
+                <asp:BoundField DataField="C_Username" HeaderText="C_Username" 
+                    SortExpression="C_Username" />
+            </Columns>
+        </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:E_Police_Record_ManagementConnectionString4 %>" 
+            SelectCommand="SELECT * FROM [Complaints]"></asp:SqlDataSource>
+    </div>
+    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!--FEATURES SECTION END-->
+    <div class="copy-txt">
+         <div class="container">
+        <div class="row">
+<div class="col-md-12 set-foot" >
+    &copy 2016. All rights reserved | Design by :
+</div>
+            </div>
+                   </div>
+    </div>
+     <!-- COPY TEXT SECTION END-->
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY  -->
+    <script src="assets/js/jquery-1.11.1.js"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="assets/js/bootstrap.js"></script>
+    <!-- CUSTOM SCRIPTS  -->
+    <script src="assets/js/custom.js"></script>
+</body>
+</html>
+
+
+
